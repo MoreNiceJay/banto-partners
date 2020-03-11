@@ -5,6 +5,8 @@ import CardActions from "@material-ui/core/CardActions"
 import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
+import { BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom"
+import Policy from "../page/Policy"
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2)

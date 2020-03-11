@@ -14,6 +14,9 @@ import { makeStyles } from "@material-ui/core/styles"
 import Container from "@material-ui/core/Container"
 import Link from "@material-ui/core/Link"
 import CardWithButton from "./components/CardWithButton"
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom"
+import Policy from "./page/Policy"
+import Home from "./page/Home"
 
 function Copyright() {
   return (
@@ -82,7 +85,7 @@ const cards = [
     preExplain: "수익내기",
     explain: "반토박스를 보내드립니다. 지금 신청서를 작성해 보세요",
     buttonText: "반토박스 신청하기",
-    buttonHref: "#"
+    buttonHref: "https://forms.gle/Kb59vN7iHzGqByKE8"
   },
   {
     preExplain: "설치하기",
@@ -100,7 +103,7 @@ const cards = [
     preExplain: "정책",
     explain: "파트너스의 반토박스 수익분배 방법에 관한 설명이 담겨있습니다",
     buttonText: "파트너스 정책 확인하기",
-    buttonHref: "#"
+    buttonHref: "/policy"
   },
   {
     preExplain: "다운로드",
@@ -116,6 +119,7 @@ export default function App() {
   return (
     <React.Fragment>
       <CssBaseline />
+
       <AppBar position="relative" color="inherit">
         <Toolbar>
           {/* <CameraIcon className={classes.icon} /> */}
@@ -125,56 +129,12 @@ export default function App() {
         </Toolbar>
       </AppBar>
       <main>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              반토 파트너스
-            </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
-              반토 고객님들의 편의를 위해 최선을 다하겠습니다
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => window.open("http://bantobox.banto.io", "_blank")}
-                  >
-                    대여기록 확인하기
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={() => {
-                      alert("오픈예정입니다. 불편을 드려죄송합니다")
-                    }}
-                  >
-                    반토박스 신청하기
-                  </Button>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
-        <Container className={classes.cardGrid} maxWidth="md">
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map(card => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <CardWithButton
-                  preExplain={card.preExplain}
-                  explain={card.explain}
-                  buttonText={card.buttonText}
-                  buttonHref={card.buttonHref}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/policy" exact component={Policy} />
+          </Switch>
+        </Router>
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
